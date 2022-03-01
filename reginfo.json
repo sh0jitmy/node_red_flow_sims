@@ -1,0 +1,17 @@
+[
+	{
+		"regname":"version",
+		"address":"0x00000000",
+		"value":"0x00000001"
+	},
+	{
+		"regname":"watchdog",
+		"address":"0x00000004",
+		"value":"0x00000001"
+	},
+	{
+		"regname":"bitstatus",
+		"address":"0x0000000C",
+		"value":"0x00000001"
+	}
+]

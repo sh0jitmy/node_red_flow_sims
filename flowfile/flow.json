@@ -1,0 +1,471 @@
+[
+    {
+        "id": "a22e4aff205df260",
+        "type": "tab",
+        "label": "フロー 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c8a6a75a4e1279db",
+        "type": "udp in",
+        "z": "a22e4aff205df260",
+        "name": "",
+        "iface": "",
+        "port": "45931",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "base64",
+        "x": 140,
+        "y": 180,
+        "wires": [
+            [
+                "c4be082e95a09ab8",
+                "ec47eca9230773c1"
+            ]
+        ]
+    },
+    {
+        "id": "c4be082e95a09ab8",
+        "type": "python3-function",
+        "z": "a22e4aff205df260",
+        "name": "Base64ToJson",
+        "func": "import base64\nprint(msg[\"payload\"])\npbuf = msg[\"payload\"]\n#byte = base64.b64decode(pbuf)\npymsg = {\"payload\" : pbuf}\nreturn pymsg",
+        "outputs": 1,
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "98c18b7ab4bf49b4",
+                "01283b6d726a585f",
+                "e74989297dfb4eee"
+            ]
+        ]
+    },
+    {
+        "id": "98c18b7ab4bf49b4",
+        "type": "debug",
+        "z": "a22e4aff205df260",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "01283b6d726a585f",
+        "type": "udp out",
+        "z": "a22e4aff205df260",
+        "d": true,
+        "name": "",
+        "addr": "127.0.0.1",
+        "iface": "",
+        "port": "12346",
+        "ipv": "udp4",
+        "outport": "",
+        "base64": true,
+        "multicast": "false",
+        "x": 640,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ec47eca9230773c1",
+        "type": "debug",
+        "z": "a22e4aff205df260",
+        "d": true,
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "651bf92b9902642e",
+        "type": "ui_table",
+        "z": "a22e4aff205df260",
+        "group": "6a3fc1eb7b1f266d",
+        "name": "",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 810,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "99db2bcd2c4483d9",
+        "type": "inject",
+        "z": "a22e4aff205df260",
+        "name": "polling",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "polling",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 400,
+        "wires": [
+            [
+                "d38a72be386f80c1",
+                "b6d5dcf8e881c28e",
+                "eefd9a748a68858e",
+                "e0cdfa9637fd2bfb",
+                "db650358cef81aeb"
+            ]
+        ]
+    },
+    {
+        "id": "d38a72be386f80c1",
+        "type": "delay",
+        "z": "a22e4aff205df260",
+        "d": true,
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 310,
+        "y": 400,
+        "wires": [
+            [
+                "b4ce0b596689f20c"
+            ]
+        ]
+    },
+    {
+        "id": "b6d5dcf8e881c28e",
+        "type": "delay",
+        "z": "a22e4aff205df260",
+        "d": true,
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "201",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 310,
+        "y": 440,
+        "wires": [
+            [
+                "b4ce0b596689f20c"
+            ]
+        ]
+    },
+    {
+        "id": "eefd9a748a68858e",
+        "type": "delay",
+        "z": "a22e4aff205df260",
+        "d": true,
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "401",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "b4ce0b596689f20c"
+            ]
+        ]
+    },
+    {
+        "id": "e0cdfa9637fd2bfb",
+        "type": "delay",
+        "z": "a22e4aff205df260",
+        "d": true,
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "601",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 310,
+        "y": 520,
+        "wires": [
+            [
+                "b4ce0b596689f20c"
+            ]
+        ]
+    },
+    {
+        "id": "db650358cef81aeb",
+        "type": "delay",
+        "z": "a22e4aff205df260",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "801",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 310,
+        "y": 560,
+        "wires": [
+            [
+                "b4ce0b596689f20c"
+            ]
+        ]
+    },
+    {
+        "id": "31d25088f39432be",
+        "type": "udp out",
+        "z": "a22e4aff205df260",
+        "d": true,
+        "name": "",
+        "addr": "127.0.0.1",
+        "iface": "",
+        "port": "12345",
+        "ipv": "udp4",
+        "outport": "",
+        "base64": true,
+        "multicast": "false",
+        "x": 1040,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "903dc1a756d94c17",
+        "type": "json",
+        "z": "a22e4aff205df260",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 670,
+        "y": 400,
+        "wires": [
+            [
+                "651bf92b9902642e",
+                "c7d2ef6a2f6d06bd"
+            ]
+        ]
+    },
+    {
+        "id": "b4ce0b596689f20c",
+        "type": "file in",
+        "z": "a22e4aff205df260",
+        "name": "json file read",
+        "filename": "/Users/bluebird/node_red_work/reginfo.json",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": false,
+        "x": 490,
+        "y": 400,
+        "wires": [
+            [
+                "903dc1a756d94c17",
+                "a3e3a557b1ec310e",
+                "47fa61501573fb89",
+                "db92cebb4a99f670"
+            ]
+        ]
+    },
+    {
+        "id": "c7d2ef6a2f6d06bd",
+        "type": "debug",
+        "z": "a22e4aff205df260",
+        "d": true,
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "d9232a4594475ae6",
+        "type": "debug",
+        "z": "a22e4aff205df260",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "a3e3a557b1ec310e",
+        "type": "python3-function",
+        "z": "a22e4aff205df260",
+        "d": true,
+        "name": "RegToBase64",
+        "func": "import json\nimport base64\n#import bytes \n\n#msg = {}\n#msg[\"payload\"] = open('reginfo.json','r')\n#json_load = json.load(msg[\"payload\"])\njson_load = json.loads(msg[\"payload\"])\n\npayload = bytearray(b'\\x00\\x00\\x00\\x00')\nrmsg = {}\n\n#print(json_load)\nfor  v in json_load :\n        address = v['address'].replace('0x','')\n        value = v['value'].replace('0x','')\n        addr_byte = bytes.fromhex(address)\n        value_byte = bytes.fromhex(value)\n        payload+=addr_byte\n        payload+=value_byte\nbase64str = base64.b64encode(payload)\nmsg[\"payload\"] = base64str.decode('utf-8')\n#print(base64)\nreturn msg\n",
+        "outputs": 1,
+        "x": 680,
+        "y": 560,
+        "wires": [
+            [
+                "d9232a4594475ae6",
+                "31d25088f39432be"
+            ]
+        ]
+    },
+    {
+        "id": "47fa61501573fb89",
+        "type": "debug",
+        "z": "a22e4aff205df260",
+        "d": true,
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "db92cebb4a99f670",
+        "type": "python3-function",
+        "z": "a22e4aff205df260",
+        "d": true,
+        "name": "",
+        "func": "import base64\n#msg[\"payload\"] = \"test\"\npayload = msg[\"payload\"]\ndata = base64.b64encode(payload)\n#msg[\"payload\"] = base64.b64encode(payload)\nreturn msg",
+        "outputs": 1,
+        "x": 690,
+        "y": 620,
+        "wires": [
+            [
+                "8f113492ceb661ef",
+                "31d25088f39432be"
+            ]
+        ]
+    },
+    {
+        "id": "8f113492ceb661ef",
+        "type": "debug",
+        "z": "a22e4aff205df260",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "e74989297dfb4eee",
+        "type": "pythonshell in",
+        "z": "a22e4aff205df260",
+        "name": "update",
+        "pyfile": "/tools/update.py",
+        "virtualenv": "",
+        "continuous": true,
+        "stdInData": true,
+        "x": 640,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6a3fc1eb7b1f266d",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "e0b98ad331520bec",
+        "order": 1,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "e0b98ad331520bec",
+        "type": "ui_tab",
+        "name": "Tab 1",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
